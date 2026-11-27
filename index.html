@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ЕГЭ Информатика</title>
+<style>
+:root{--bg:#07071a;--card:rgba(255,255,255,.045);--line:rgba(145,125,255,.2);--tx:#f3f2fb;--mu:#9b97c9;--ac:#8b6dff;--ok:#8fe3b0;--er:#ff8f9f}
+*{box-sizing:border-box}
+html{min-height:100%;background:radial-gradient(120% 55% at 95% 0,rgba(86,52,200,.5),transparent 60%),radial-gradient(90% 45% at 0 100%,rgba(70,40,170,.45),transparent 60%),var(--bg)}
+body{margin:0;color:var(--tx);font:16px/1.5 -apple-system,"SF Pro Text",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cff' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%237c5cff' stop-opacity='.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 120 C110 60 210 200 400 90 L400 400 L0 400Z' fill='url(%23g)'/%3E%3Cpath d='M0 120 C110 60 210 200 400 90' fill='none' stroke='%239d86ff' stroke-opacity='.4' stroke-width='1.5'/%3E%3C/svg%3E") center bottom/100% 55% no-repeat}
+#app{max-width:560px;margin:0 auto;padding:22px 18px 48px}
+h1{font-size:30px;line-height:1.15;font-weight:700;letter-spacing:-.2px;margin:18px 0 6px}
+h2{font-size:17px;font-weight:600;margin:22px 0 10px}
+.mu{color:var(--mu);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:14px 0}
+button{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;width:100%;margin:8px 0;text-align:left;cursor:pointer}
+button:active{background:rgba(139,109,255,.16)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button.p{background:linear-gradient(180deg,#8f72ff,#7352f5);color:#0b0722;border:0;text-align:center;font-weight:700;border-radius:20px;padding:16px;box-shadow:0 8px 24px rgba(115,82,245,.35)}
+button.s{width:auto;padding:8px 14px;margin:0;border-radius:12px;background:rgba(139,109,255,.2);color:#d6ccff}
+.mi{display:flex;align-items:center;gap:14px;padding:12px 14px}
+.mi .tx{flex:1;line-height:1.35}.mi .tx b{font-size:17px;font-weight:600}
+.ic{width:50px;height:50px;border-radius:14px;background:rgba(139,109,255,.2);border:1px solid rgba(165,146,255,.25);display:grid;place-items:center;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{width:auto;margin:0;padding:8px 14px;font-size:14px;border-radius:14px}
+.chips button.on{border-color:var(--ac);color:#d6ccff;background:rgba(139,109,255,.22)}
+input[type=text]{width:100%;font:inherit;color:var(--tx);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:15px 16px;margin:8px 0}
+input[type=range]{width:100%;accent-color:var(--ac)}
+.qt{white-space:pre-wrap;word-break:break-word;margin-top:6px;font-size:17px}
+.ok{color:var(--ok)}.er{color:var(--er)}
+.bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin:10px 0 14px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#6f4ff2,#a592ff);border-radius:2px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+@keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-7px)}30%{transform:translateX(6px)}45%{transform:translateX(-5px)}60%{transform:translateX(4px)}80%{transform:translateX(-2px)}}
+@keyframes glowR{0%,100%{box-shadow:0 0 0 rgba(255,80,100,0)}20%,60%{box-shadow:0 0 26px 5px rgba(255,80,100,.7)}40%{box-shadow:0 0 8px 1px rgba(255,80,100,.25)}80%{box-shadow:0 0 18px 3px rgba(255,80,100,.5)}}
+@keyframes glowG{0%,100%{box-shadow:0 0 0 rgba(90,230,150,0)}25%,65%{box-shadow:0 0 26px 5px rgba(90,230,150,.65)}45%{box-shadow:0 0 10px 1px rgba(90,230,150,.3)}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.045)}100%{transform:scale(1)}}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes popin{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+@keyframes cfall{to{transform:translate(var(--dx),108vh) rotate(720deg)}}
+@keyframes sh{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.bad{animation:shake .5s ease,glowR 1s ease;border-color:rgba(255,90,110,.85)}
+.good{animation:pop .55s ease,glowG 1s ease;border-color:rgba(100,230,150,.85)}
+.fl{display:inline-block;animation:fl 3s ease-in-out infinite}
+.pi{display:inline-block;animation:popin .45s ease both}
+.an{animation:in .35s ease both}
+.mi{animation:in .45s ease both}
+.mi:nth-of-type(2){animation-delay:.07s}.mi:nth-of-type(3){animation-delay:.14s}.mi:nth-of-type(4){animation-delay:.21s}
+.cf{position:fixed;top:-14px;width:8px;height:12px;border-radius:2px;z-index:5;pointer-events:none;animation:cfall 2.3s ease-in forwards}
+.bar i{position:relative;overflow:hidden}
+.bar i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:sh 2.2s infinite}
+@media(prefers-reduced-motion:reduce){*,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+.sb{display:block;width:100%;height:64px;margin:0 0 6px;touch-action:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:disabled{opacity:.35}
+.ov{position:fixed;inset:0;background:rgba(4,4,16,.72);display:grid;place-items:center;padding:20px;z-index:10}
+.dlg{width:100%;max-width:380px;background:#15123a}
+.notice{margin:8px 0 0;padding:9px 11px;border:1px solid rgba(255,209,102,.28);border-radius:12px;background:rgba(255,209,102,.07);color:#f3d99b;font-size:12px;line-height:1.4}
+.statline{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(145,125,255,.12)}.statline:last-child{border:0}.statline b{white-space:nowrap}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@keyframes blink{0%,100%{opacity:0}20%,60%{opacity:1}40%{opacity:.25}80%{opacity:.7}}
+.bad,.good{position:relative}
+.bad{animation:shake .5s ease;border-color:rgba(255,90,110,.85)}
+.good{animation:pop .55s ease;border-color:rgba(100,230,150,.85)}
+.bad::after,.good::after{content:"";position:absolute;inset:-1px;border-radius:18px;pointer-events:none;opacity:0;animation:blink 1s ease}
+.bad::after{box-shadow:0 0 26px 5px rgba(255,80,100,.7)}
+.good::after{box-shadow:0 0 26px 5px rgba(90,230,150,.65)}
+</style>
+<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+</head><body><div id="app"></div>
+<script>
+try{vkBridge.send("VKWebAppInit")}catch(e){}
+const $=s=>document.querySelector(s);
+const NM={1:"Граф и таблица",2:"Таблица истинности",4:"Условие Фано",5:"Алгоритм с двоичной записью",6:"Черепаха (упр.)",7:"Объём изображения",8:"Количество слов",11:"Объём информации",12:"Машина Тьюринга",13:"Маска подсети",14:"Системы счисления",15:"Логика и отрезки",16:"Рекурсия (упр.)",17:"Пары в последовательности (упр.)",19:"Игра, Ваня за 1 ход (упр.)",20:"Игра, Петя за 2 хода (упр.)",21:"Игра, Ваня за 2 хода (упр.)",22:"Процессы",23:"Количество программ",24:"Строки (упр.)",25:"Маски чисел (упр.)",26:"Файлы: жадность и перебор (упр.)",27:"Подпоследовательности (упр., не как в ЕГЭ)"};
+const SN={6:"Упрощённая версия: в ЕГЭ фигуры сложнее (вложенные циклы, составные фигуры).",16:"Упрощённая версия: в ЕГЭ рекурсивная функция с очень большим N.",17:"Упрощённая версия: в ЕГЭ последовательность из 10 000 чисел лежит в файле.",19:"Упрощённая версия: в ЕГЭ чаще две кучи камней.",20:"Упрощённая версия: в ЕГЭ чаще две кучи камней.",21:"Упрощённая версия: в ЕГЭ чаще две кучи камней.",24:"Упрощённая версия: в ЕГЭ строка (~10⁶ символов) лежит в файле.",25:"Упрощённая версия: в ЕГЭ перебирается большой диапазон с помощью программы.",26:"Упрощённая версия: в ЕГЭ данные лежат в файле.",27:"Не соответствует ЕГЭ: в реальном задании 27 анализируют данные из файлов (кластеризация); здесь — подпоследовательности на малых данных."};
+const TY=Object.keys(NM).map(Number);
+const H={
+11:"На символ: i = ⌈log₂N⌉ бит (N — размер алфавита). Пароль: ⌈L·i / 8⌉ байт. Итого = (пароль + доп. данные) · число пользователей.",
+14:"p^a − p^b записывается как (a−b) цифр (p−1) и b нулей. Добавьте остаток и посчитайте нужные цифры.",
+15:"Импликация: A→B = ¬A ∨ B. Найдите, при каких x формула может стать ложной, и разместите A так, чтобы этого не случилось. Рисуйте отрезки на прямой.",
+17:"Идите по парам (i, i+1) и проверяйте оба условия. Сумма ≤ 2·среднее ⇔ сумма·N ≤ 2·(сумма всех).",
+22:"Начало процесса = максимум из окончаний его зависимостей. Окончание = начало + длительность. Общее время = наибольшее окончание.",
+23:"Динамика: K(n) = K(n−1) + K(n−a) + K(n/m, если делится). Через M: K(S→M)·K(M→T). «Без M» = все программы − программы через M.",
+24:"Идите по строке, храните длину текущей подходящей подстроки; при нарушении условия начинайте новую. Ответ — максимум длин.",
+25:"Перебирайте числа отрезка: сначала x % K == 0, затем маска (регулярное выражение: ? → \\d, * → \\d*).",
+26:"Сортировка по возрастанию и набор, пока влезает, даёт максимум по количеству. Затем среди наборов такого размера ищем наибольшую сумму ≤ V.",
+27:"Перебирайте начало i и конец j, накапливая сумму; проверяйте t % K == 0. Для больших данных — префиксные суммы и остатки.",
+4:"Условие Фано: ни одно кодовое слово не начало другого. Перебирайте слова длины 1, 2, 3… по возрастанию значения и берите первое, которое не является началом уже выбранных и не совпадает с ними.",
+5:"Выполните алгоритм вручную для нескольких N и найдите закономерность. Считайте именно то, что сказано: единицы или нули. Проверьте, что предыдущее N не подходит.",
+7:"Объём = ширина · высота · i бит, где 2^i ≥ числу цветов. Переведите в Кбайт: делите на 8 и на 1024. Раскладывайте числа на степени двойки.",
+8:"Считайте по позициям: сколько вариантов у каждой позиции с учётом ограничений, затем перемножьте. Для «ровно один раз» выберите позицию буквы и умножьте на число вариантов остальных.",
+12:"Выполните несколько тактов вручную. Следите за состоянием и за тем, что записывается в ячейку до сдвига. Определите, какой простой алгоритм реализует программа (инверсия, замена нулей…).",
+13:"Маска оставляет h разрядов под номер узла, всего 2^h адресов, два служебных не считаются. Чётность единиц считайте по двоичной записи всех четырёх байтов адреса.",
+16:"Не вычисляйте факториалы целиком: сократите дробь F(N)/F(N−k). Для суммы двух предыдущих считайте значения по порядку, записывая таблицу.",
+19:"Выпишите оба хода Пети. Он не должен выигрывать первым ходом, а после каждого его хода Ваня должен выигрывать одним ходом.",
+20:"Постройте дерево: после хода Пети обе реакции Вани не выигрывают сразу, а Петя затем выигрывает. Ищите S, при которых хотя бы один ход Пети приводит к такой позиции.",
+21:"Разделите позиции: выигрыш за 1 ход, выигрыш за 2 хода. Ваня выигрывает не позже второго хода после любого хода Пети, но хотя бы после одного хода Пети быстрее не выигрывает.",
+1:"Сравните схему и таблицу: найдите пункты по числу дорог (степени вершин) и по соседям. Определите, какие номера соответствуют нужным буквам, и посмотрите длину в таблице.",
+2:"Подставьте значения из строк в выражение, сначала там, где F=0 (её проще проверить). Для каждой переменной найдите, какой столбец ей подходит, и проверьте остальные строки.",
+6:"Определите фигуру: размеры и положение. Точки внутри прямоугольника a×b: (a−1)(b−1). С границей: (a+1)(b+1). Повтор того же контура фигуру не меняет."
+};
+let S;try{S=JSON.parse(localStorage.getItem("ege1"))}catch(e){console.warn("Не удалось прочитать статистику из LocalStorage",e)}
+if(!S||typeof S!=="object"||Array.isArray(S))S={};
+if(!S.t||typeof S.t!=="object"||Array.isArray(S.t))S.t={};
+if(!S.seen||typeof S.seen!=="object"||Array.isArray(S.seen))S.seen={};
+S.sec=Number.isFinite(Number(S.sec))&&Number(S.sec)>=0?Math.floor(Number(S.sec)):0;
+const cleanCount=x=>Number.isFinite(Number(x))&&Number(x)>0?Math.floor(Number(x)):0;
+// Миграция старых массивов [попытки, ошибки] с сохранением общего итога.
+// Историю конкретных вариантов до обновления восстановить нельзя.
+for(const [k,v] of Object.entries(S.t)){
+ if(Array.isArray(v)){
+  const a=cleanCount(v[0]),e=Math.min(a,cleanCount(v[1]));
+  S.t[k]={a,e,hA:0,hE:0,nA:0,nE:0,fA:0,fE:0,rA:0,rE:0,legacy:true};
+ }else if(!v||typeof v!=="object")S.t[k]={a:0,e:0,hA:0,hE:0,nA:0,nE:0,fA:0,fE:0,rA:0,rE:0,legacy:true};
+ else{
+  // Если объект старого формата содержит только a/e, детализация неизвестна.
+  const hasBreakdown=["hA","hE","nA","nE","fA","fE","rA","rE"].every(f=>Object.prototype.hasOwnProperty.call(v,f));
+  if(!hasBreakdown)v.legacy=true;
+  for(const f of ["a","e","hA","hE","nA","nE","fA","fE","rA","rE"])v[f]=cleanCount(v[f]);
+  // Подкатегории не могут содержать больше попыток, чем общий счётчик.
+  v.hA=Math.min(v.a,v.hA);v.nA=Math.min(Math.max(0,v.a-v.hA),v.nA);
+  v.fA=Math.min(v.a,v.fA);v.rA=Math.min(Math.max(0,v.a-v.fA),v.rA);
+  v.e=Math.min(v.a,v.e);
+  v.hE=Math.min(v.hA,v.hE);v.nE=Math.min(Math.max(0,v.e-v.hE),v.nA,v.nE);
+  v.fE=Math.min(v.fA,v.fE);v.rE=Math.min(Math.max(0,v.e-v.fE),v.rA,v.rE);
+ }
+}
+const sv=()=>{try{localStorage.setItem("ege1",JSON.stringify(S));return true}catch(e){console.warn("Не удалось сохранить статистику в LocalStorage",e);return false}};
+let timeMark=Date.now(),timeCarry=0;
+const flushTime=()=>{const now=Date.now(),elapsed=Math.max(0,now-timeMark)+timeCarry,whole=Math.floor(elapsed/1000);timeCarry=elapsed-whole*1000;if(whole){S.sec+=whole;sv()}timeMark=now};
+setInterval(()=>{if(!document.hidden)flushTime();else timeMark=Date.now()},5000);
+document.addEventListener("visibilitychange",()=>{if(document.hidden)flushTime();else timeMark=Date.now()});
+window.addEventListener("pagehide",()=>{if(!document.hidden)flushTime()});
+
+let R;
+const mul=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const ri=(a,b)=>a+Math.floor(R()*(b-a+1)),pk=a=>a[ri(0,a.length-1)];
+const arr=(n,a,b)=>Array.from({length:n},()=>ri(a,b));
+
+const MP=[{r:1,q:{q0:{"λ":["λ","L","q1"]},q1:{"λ":["λ","S","q1"],"1":["0","S","q1"],"0":["1","L","q1"]}}},
+{r:1,q:{q0:{"λ":["λ","L","q1"]},q1:{"λ":["λ","S","q1"],"1":["0","L","q1"],"0":["1","L","q1"]}}},
+{r:1,q:{q0:{"λ":["λ","L","q1"]},q1:{"λ":["λ","S","q1"],"1":["0","S","q1"],"0":["0","L","q1"]}}},
+{r:0,q:{q0:{"λ":["λ","R","q1"]},q1:{"λ":["λ","S","q1"],"1":["0","S","q1"],"0":["1","R","q1"]}}},
+{r:0,q:{q0:{"λ":["λ","R","q1"]},q1:{"λ":["λ","S","q1"],"1":["0","R","q1"],"0":["1","R","q1"]}}}];
+const mtRun=(P,s,right)=>{const t=["λ",...s,"λ"];let h=right?t.length-1:0,q="q0",n=0;while(n++<9999){const c=P[q]&&P[q][t[h]];if(!c)break;t[h]=c[0];q=c[2];if(c[1]=="S")break;h+=c[1]=="L"?-1:1;if(h<0){t.unshift("λ");h=0}if(h>=t.length)t.push("λ")}return t.filter(x=>x!="λ").join("")};
+const GM=t=>{for(;;){const a=ri(1,3),m=ri(2,3),T=ri(40,90),O=[s=>s+a,s=>s*m],
+W1=s=>O.some(f=>f(s)>=T),W2=s=>W1(s)||O.some(f=>f(s)<T&&O.every(g=>g(f(s))<T&&W1(g(f(s))))),
+S=Array.from({length:T-1},(_,i)=>i+1),
+intro=`Два игрока, Петя и Ваня, ходят по очереди, первый ход делает Петя. Перед игроками куча камней. За один ход можно увеличить количество камней в куче на ${a} или увеличить количество камней в куче в ${m} раза. Игра завершается, когда в куче становится не менее ${T} камней; победитель — игрок, сделавший последний ход. Начальное количество камней в куче — S, 1 ≤ S ≤ ${T-1}.\n\n`;
+if(t==19){const r=S.find(s=>!W1(s)&&O.every(f=>W1(f(s))));if(r)return[intro+`Укажите минимальное значение S, при котором Петя не может выиграть за один ход, но при любом ходе Пети Ваня может выиграть своим первым ходом.`,String(r),`Петя не выигрывает первым ходом: ни ${"S+"+a}, ни S·${m} не достигают ${T}. Ваня должен выигрывать после обоих ходов Пети. Минимальное такое S — ${r}.`]}
+if(t==20){const r=S.filter(s=>!W1(s)&&W2(s));if(r.length==2)return[intro+`Найдите два значения S, при которых у Пети есть выигрышная стратегия, причём Петя не может выиграть за один ход, но может выиграть своим вторым ходом при любой игре Вани. Запишите найденные значения в порядке возрастания через пробел.`,r.join(" "),`Нужно, чтобы после первого хода Пети любой ход Вани не выигрывал сразу, а Петя затем выигрывал. Подходят S = ${r.join(" и ")}.`]}
+if(t==21){const r=S.find(s=>!W1(s)&&O.every(f=>W2(f(s)))&&!O.every(f=>W1(f(s))));if(r)return[intro+`Найдите минимальное значение S, при котором у Вани есть выигрышная стратегия, позволяющая ему выиграть первым или вторым ходом, но нет стратегии, позволяющей гарантированно выиграть первым ходом.`,String(r),`После любого хода Пети Ваня выигрывает не позже второго своего хода, но хотя бы после одного хода Пети выиграть сразу не может. Минимальное S — ${r}.`]}}};
+const G={
+11(){const k=ri(20,200),n=ri(8,20),x=ri(10,40),m=ri(10,90)*10,b=Math.ceil(Math.log2(k)),y=Math.ceil(n*b/8);
+return[`При регистрации каждому пользователю выдаётся пароль из ${n} символов, использующий алфавит из ${k} символов. Все символы кодируются одинаковым минимально возможным числом бит, пароль занимает минимально возможное целое число байт. Кроме пароля, о каждом пользователе хранится ещё ${x} байт данных. Сколько байт нужно для хранения сведений о ${m} пользователях?`,
+String((y+x)*m),`На символ нужно ⌈log₂${k}⌉ = ${b} бит. Пароль: ⌈${n}·${b}/8⌉ = ${y} байт. На пользователя ${y}+${x} = ${y+x} байт. Всего ${y+x}·${m} = ${(y+x)*m}.`]},
+14(){const p=pk([2,3,5,7]),a=ri(12,40),b=ri(4,10),c=ri(1,9),d=pk([0,p-1]),s=(BigInt(p)**BigInt(a)-BigInt(p)**BigInt(b)+BigInt(c)).toString(p),n=[...s].filter(z=>z==d).length;
+return[`Значение выражения ${p}^${a} − ${p}^${b} + ${c} записали в системе счисления с основанием ${p}. Сколько цифр ${d} содержится в этой записи?`,String(n),`${p}^${a} − ${p}^${b} — это ${a-b} цифр ${p-1}, за которыми идут ${b} нулей. Прибавление ${c} меняет последние цифры. Запись: ${s}. Цифр ${d}: ${n}.`]},
+15(v){const A=ri(1,20),B=A+ri(8,16);let q,r,e;
+if(v%2){const C=ri(1,30),D=C+ri(3,12),j=C<=B&&A<=D;r=j?Math.max(B,D)-Math.min(A,C):Math.max(B-A,D-C);
+q=`На числовой прямой даны отрезки P = [${A}; ${B}] и Q = [${C}; ${D}]. Определите наибольшую возможную длину отрезка A, для которого формула ((x ∈ A) → (x ∈ P)) ∨ (x ∈ Q) тождественно истинна при любом x.`;
+e=`Формула ложна, только если x ∈ A, x ∉ P и x ∉ Q. Значит, A лежит внутри P ∪ Q. ${j?"Отрезки пересекаются или касаются — объединение это один отрезок":"Отрезки не пересекаются — берём самый длинный из двух"}. Ответ: ${r}.`}
+else{const C=A+ri(1,3),D=B-ri(1,3),mn=ri(0,1);r=mn?D-C:B-A;
+q=`На числовой прямой даны отрезки P = [${A}; ${B}] и Q = [${C}; ${D}]. Определите ${mn?"наименьшую":"наибольшую"} возможную длину отрезка A, для которого формула ((x ∈ A) → (x ∈ P)) ∧ ((x ∈ Q) → (x ∈ A)) тождественно истинна при любом x.`;
+e=`Условие означает: A ⊆ P и Q ⊆ A. Значит, Q ⊆ A ⊆ P. Наименьшая длина A равна длине Q (${D-C}), наибольшая — длине P (${B-A}). Ответ: ${r}.`}
+return[q,String(r),e]},
+17(){const n=12,d=pk([3,5,7]);let s,c,L,t;
+do{s=arr(n,10,99);t=s.reduce((x,y)=>x+y);c=0;L=[];for(let i=0;i<n-1;i++)if((s[i]%d==0)!=(s[i+1]%d==0)&&(s[i]+s[i+1])*n<=2*t){c++;L.push(s[i]+"+"+s[i+1])}}while(!c);
+return[`Дана последовательность из ${n} чисел: ${s.join(" ")}. Найдите количество пар соседних элементов, в которых ровно один элемент делится на ${d} и сумма элементов пары не превышает удвоенного среднего арифметического всех чисел последовательности.`,String(c),`Сумма всех чисел ${t}, среднее ${(t/n).toFixed(2)}, порог для суммы пары ${(2*t/n).toFixed(2)}. Подходят пары: ${L.join(", ")}.`]},
+22(v){const n=7,D=[],P=[],B=[],F=[];
+for(let i=0;i<n;i++){D.push(ri(1,9));const dp=[];if(i){const k=ri(1,Math.min(2,i));while(dp.length<k){const j=ri(0,i-1);if(!dp.includes(j))dp.push(j)}}dp.sort((x,y)=>x-y);P.push(dp);const st=Math.max(0,...dp.map(j=>F[j]));B.push(st);F.push(st+D[i])}
+const tb=D.map((d,i)=>`P${i+1} | ${d} | ${P[i].length?P[i].map(j=>"P"+(j+1)).join(", "):"—"}`).join("\n"),ix=B.indexOf(Math.max(...B)),all=Math.max(...F);
+return[`Выполнение набора связанных процессов описано таблицей (процесс | длительность | зависит от). Процесс начинается сразу после завершения всех процессов, от которых он зависит. Независимые процессы выполняются параллельно, число процессоров не ограничено.\n\n${tb}\n\n`+(v%2?`Через какое время после старта завершатся все процессы?`:`Через какое время после старта может начаться процесс P${ix+1}?`),
+String(v%2?all:B[ix]),`Начало → окончание: ${D.map((d,i)=>`P${i+1}: ${B[i]}→${F[i]}`).join("; ")}.`]},
+23(v){const S0=ri(1,4),a=ri(2,4),m=ri(2,3),T=ri(20,40),M=ri(S0+3,T-3);
+const W=(x,y)=>{const w=Array(y+1).fill(0);w[x]=1;for(let i=x;i<y;i++)if(w[i])for(const j of[i+1,i+a,i*m])if(j<=y)w[j]+=w[i];return w[y]};
+const p=W(S0,M)*W(M,T),all=W(S0,T),r=v%2?all-p:p;
+return[`У исполнителя три команды: 1) прибавить 1; 2) прибавить ${a}; 3) умножить на ${m}. Программа — последовательность команд. Сколько существует программ, которые преобразуют число ${S0} в число ${T}, и в траектории вычислений ${v%2?"не содержится":"содержится"} число ${M}?`,
+String(r),`Считаем динамикой K(n) = K(n−1) + K(n−${a}) + K(n/${m}, если делится). Из ${S0} в ${M}: ${W(S0,M)} способов, из ${M} в ${T}: ${W(M,T)}. Через ${M}: ${W(S0,M)}·${W(M,T)} = ${p}. Всего программ: ${all}. ${v%2?`Без числа ${M}: ${all} − ${p} = ${r}.`:`С числом ${M}: ${p}.`} Ответ: ${r}.`]},
+24(v){const L=45,s=Array.from({length:L},()=>pk([..."ABCD"])).join(""),x=pk([..."ABCD"]),y=pk([..."ABCD"].filter(z=>z!=x));
+const f=g=>{let r=0;for(let i=0;i<L;i++)for(let j=i+1;j<=L;j++){if(g(s.slice(i,j)))r=Math.max(r,j-i);else break}return r};
+const r=v%2?f(z=>!z.includes(x)):f(z=>!z.includes(x+y));
+return[`Дана строка из ${L} символов:\n${s}\nОпределите длину самой длинной подстроки (идущих подряд символов), ${v%2?`в которой нет буквы ${x}`:`в которой нет сочетания ${x}${y}`}.`,String(r),`Идём по строке слева направо и поддерживаем начало текущего допустимого окна. ${v%2?`Если встретили ${x}, начинаем окно сразу после этой позиции.`:`Если встретили запрещённую соседнюю пару ${x}${y}, сдвигаем начало окна на позицию после ${x}; так удаляется только нарушающая пара, а допустимые символы сохраняются.`} После каждого символа обновляем максимальную длину. Получаем ${r}. (В настоящем задании строка на ~10⁶ символов лежит в файле, решается тем же способом программой.)`]},
+25(v){
+const dg=()=>ri(0,9),K=pk([7,11,13,17,19,23,29,31,37]),L=ri(1,6)*100000,E=L+ri(150000,300000);
+let m="",re=null,c=0,mx=0;
+const scan=()=>{c=0;mx=0;for(let x=Math.ceil(L/K)*K;x<=E;x+=K)if(re.test(String(x))){c++;mx=x}};
+for(let tries=0;tries<100&&!c;tries++){
+ m=`${ri(1,9)}?${dg()}*${dg()}`;
+ re=new RegExp("^"+m.replace("?","\\d").replace("*","\\d*")+"$");
+ scan();
+}
+if(!c){
+ const x=Math.ceil(L/K)*K,ds=String(x);
+ m=`${ds[0]}?${ds[2]}*${ds.slice(-1)}`;
+ re=new RegExp("^"+m.replace("?","\\d").replace("*","\\d*")+"$");
+ scan();
+}
+return[`Среди целых чисел отрезка [${L}; ${E}] найдите числа, соответствующие маске ${m} («?» — ровно одна произвольная цифра, «*» — любая последовательность цифр, в том числе пустая) и делящиеся на ${K} без остатка. ${v%2?"Укажите наибольшее из таких чисел.":"Сколько таких чисел?"}`,String(v%2?mx:c),`Перебираем кратные ${K} в отрезке [${L}; ${E}] и проверяем маску ${m}. Найдено ${c} чисел, наибольшее ${mx}.`]
+},26(){const n=14,s=arr(n,20,150),V=ri(600,1000),a=[...s].sort((x,y)=>x-y);let k=0,t=0;while(k<n&&t+a[k]<=V)t+=a[k++];
+let b=0;for(let m=1;m<1<<n;m++){let c=0,w=0;for(let i=0;i<n;i++)if(m>>i&1){c++;w+=s[i]}if(c==k&&w<=V&&w>b)b=w}
+return[`В хранилище ${V} Мбайт нужно сохранить как можно больше файлов из набора (размеры в Мбайт): ${s.join(", ")}. Определите наибольшее количество файлов, которое можно сохранить, и наибольший возможный суммарный размер сохранённых файлов при таком количестве. Ответ: два числа через пробел — сначала количество, затем размер.`,
+`${k} ${b}`,`Берём файлы по возрастанию размера: влезает ${k} (сумма ${t}) — это максимум по количеству. Среди всех наборов из ${k} файлов ищем наибольшую сумму, не больше ${V}: ${b}.`]},
+27(v){const n=12,K=ri(3,9);let s,c,mx;
+do{s=arr(n,1,50);c=0;mx=0;for(let i=0;i<n;i++){let t=0;for(let j=i;j<n;j++){t+=s[j];if(t%K==0){c++;mx=Math.max(mx,t)}}}}while(!c);
+return[`Дана последовательность из ${n} натуральных чисел: ${s.join(" ")}. Рассматриваются непрерывные подпоследовательности (идущие подряд элементы), сумма которых кратна ${K}. ${v%2?"Сколько таких подпоследовательностей?":"Найдите наибольшую такую сумму."}`,String(v%2?c:mx),`Перебираем начало i и конец j, накапливая сумму t; при t % ${K} == 0 считаем подпоследовательность. Всего ${c}, наибольшая сумма ${mx}. (В настоящем задании данные в файле на ~10⁶ чисел: нужны префиксные суммы и остатки по модулю ${K}.)`]},
+4(){for(;;){const rw=l=>Array.from({length:l},()=>ri(0,1)).join(""),w=[rw(ri(1,2)),rw(ri(2,3)),rw(ri(2,4))],pf=(a,b)=>a.startsWith(b)||b.startsWith(a);
+if(w.some((x,i)=>w.some((y,j)=>i!=j&&pf(x,y))))continue;
+let r=null;for(let L=1;L<=6&&!r;L++)for(let n=0;n<2**L;n++){const c=n.toString(2).padStart(L,"0");if(!w.some(x=>pf(x,c))){r=c;break}}
+if(!r)continue;
+return[`Для кодирования букв А, Б, В, Г используются неравномерные двоичные коды, удовлетворяющие условию Фано. Для букв А, Б, В выбраны кодовые слова: А — ${w[0]}, Б — ${w[1]}, В — ${w[2]}. Для буквы Г нужно выбрать кодовое слово минимальной длины; если таких слов несколько, то слово с наименьшим числовым значением. Запишите это кодовое слово.`,r,`Перебираем слова длины 1, 2, 3… в порядке возрастания значения и берём первое, которое не является началом ни одного из слов ${w.join(", ")} и не совпадает с началом. Ответ: ${r}.`]}},
+5(v){const T=ri(50,400),z=s=>s.split("1").length-1,ap=s=>s+z(s)%2,
+f=n=>{let s=ap(n.toString(2));s=v%2?ap(s):s+(s.length-z(s))%2;return parseInt(s,2)};let n=1;while(f(n)<=T)n++;
+return[`Автомат получает на вход натуральное число N и строит новое число R так. 1) Строится двоичная запись числа N. 2) К ней справа дописывается ещё один разряд — остаток от деления количества единиц в записи на 2. 3) К полученной записи справа дописывается ещё один разряд — остаток от деления ${v%2?"количества единиц":"количества нулей"} в ней на 2. Результат — двоичная запись числа R. Найдите минимальное N, при котором R > ${T}.`,String(n),`Перебираем N = 1, 2, 3… и по правилам строим R. Первое N с R > ${T}: N = ${n} (R = ${f(n)}).`]},
+7(v){let W,H,b;do{W=ri(4,40)*32;H=ri(4,30)*32;b=ri(2,8)}while(W*H*b%8192);const kb=W*H*b/8192;
+return[v%2?`Изображение размером ${W}×${H} пикселей занимает ${kb} Кбайт памяти (без сжатия, служебные данные не учитываются). Какое максимальное количество цветов может быть в палитре изображения?`:`Растровое изображение размером ${W}×${H} пикселей кодируется с палитрой из ${2**b} цветов без сжатия. Сколько Кбайт занимает изображение (служебные данные не учитываются)?`,
+String(v%2?2**b:kb),`На пиксель нужно ${b} бит (2^${b} = ${2**b} цветов). Объём: ${W}·${H}·${b} бит = ${kb} Кбайт.`]},
+8(v){const k=ri(3,5),L=ri(4,6),A=[..."АБВГД"].slice(0,k),X=pk(A),Y=pk(A.filter(z=>z!=X)),c=v%3;let n=0;
+for(let i=0;i<k**L;i++){const w=Array.from({length:L},(_,j)=>A[Math.floor(i/k**j)%k]);
+if(c==0?w.filter(z=>z==X).length==1:c==1?w.every((z,j)=>!j||z!=w[j-1]):w[0]!=X&&w[L-1]==Y)n++}
+return[`Все ${L}-буквенные слова, составленные из букв ${A.join(", ")}, записаны в алфавитном порядке и пронумерованы. Сколько среди них слов, ${c==0?`в которых буква ${X} встречается ровно один раз`:c==1?"в которых нет двух одинаковых букв подряд":`которые не начинаются с буквы ${X} и заканчиваются буквой ${Y}`}?`,String(n),
+c==0?`Позиция для ${X}: ${L} способов, остальные ${L-1} позиций из ${k-1} букв: ${k-1}^${L-1}. Итого ${L}·${k-1}^${L-1} = ${n}.`:c==1?`Первая буква — ${k} способов, каждая следующая — ${k-1}: ${k}·${k-1}^${L-1} = ${n}.`:`Первая буква: ${k-1} способ, последняя фиксирована, средние ${L-2} позиции свободны: ${k-1}·${k}^${L-2} = ${n}.`]},
+12(v){const N=ri(100,1000),P=pk(MP),s=N.toString(2),out=mtRun(P.q,s,P.r),r=parseInt(out||"0",2);
+const cell=(q,c)=>P.q[q][c]?P.q[q][c].join(", ")+(P.q[q][c][2]?"":", q1"):"";
+const row=q=>["λ","1","0"].map(c=>{const m=P.q[q][c];return m?`${m[0]}, ${m[1]}, q1`:"—"}).join(" | ");
+return[`Исполнитель МТ — головка, которая движется по бесконечной ленте из ячеек; в каждой ячейке один символ, пустая ячейка содержит «λ». Команда записывается как «символ, сдвиг, состояние»: головка записывает символ, сдвигается (L — влево, R — вправо, S — остановка) и переходит в указанное состояние. Начальное состояние q0.\n\nНа ленте записано число ${N} в двоичной системе без ведущих нулей, остальные ячейки пусты. В начале головка стоит в ближайшей ячейке ${P.r?"справа":"слева"} от записи числа.\n\nПрограмма (столбцы: λ | 1 | 0):\nq0: ${P.r?"λ, L, q1":"λ, R, q1"} | — | —\nq1: ${row("q1")}\n\nОпределите десятичное число, двоичная запись которого остаётся на ленте после остановки.`,String(r),`Запись числа: ${s}. После работы программы на ленте: ${out}. Это число ${r}.`]},
+13(v){const h=ri(4,10),M=2**32;let net=ri(11,223)*2**24+ri(0,255)*65536+ri(0,255)*256+ri(0,255);net-=net%2**h;
+const dq=x=>[24,16,8,0].map(s=>Math.floor(x/2**s)%256).join("."),pc=x=>x.toString(2).split("1").length-1;let c=0;
+for(let x=net+1;x<net+2**h-1;x++)if(pc(x)%2==0)c++;
+return[`Узлу сети соответствует адрес сети ${dq(net)}, маска сети ${dq(M-2**h)}. Сколько в этой сети IP-адресов, в двоичной записи которых чётное количество единиц? Адрес сети и широковещательный адрес не учитывайте.`,String(c),`Маска оставляет ${h} разрядов под номер узла, всего ${2**h} адресов; без адреса сети и широковещательного — ${2**h-2}. Перебирая адреса от ${dq(net+1)} до ${dq(net+2**h-2)}, считаем те, у которых чётное число единиц: ${c}.`]},
+16(v){let q,a,e;if(v%2){const A=ri(1,3),B=ri(1,4),N=ri(15,30);let x=BigInt(A),y=BigInt(B);for(let i=3;i<=N;i++){[x,y]=[y,x+y]}
+q=`Алгоритм вычисления функции F(n) задан соотношениями: F(1) = ${A}, F(2) = ${B}, F(n) = F(n − 1) + F(n − 2) при n > 2. Чему равно значение F(${N})?`;a=String(N>2?y:B);e=`Считаем последовательно: каждое следующее значение равно сумме двух предыдущих, начиная с ${A} и ${B}. F(${N}) = ${a}.`}
+else{const N=ri(20,60),k=ri(2,4);let p=1n;for(let i=N-k+1;i<=N;i++)p*=BigInt(i);
+q=`Алгоритм вычисления функции F(n) задан соотношениями: F(1) = 1, F(n) = n · F(n − 1) при n > 1. Чему равно значение выражения F(${N}) / F(${N-k})?`;a=String(p);e=`F(${N}) / F(${N-k}) = ${N-k+1}·…·${N} = ${a}. Факториалы целиком считать не нужно.`}
+return[q,a,e]}
+,
+19(v){return GM(19)},20(v){return GM(20)},21(v){return GM(21)},
+1(){const L=[..."АБВГДЕ"],sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const perms=a=>a.length<2?[a]:a.flatMap((x,i)=>perms([...a.slice(0,i),...a.slice(i+1)]).map(p=>[x,...p]));const PA=perms([0,1,2,3,4,5]);
+for(;;){const E=[];for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)if(ri(0,99)<45)E.push([i,j]);if(E.length<7||E.length>9)continue;
+const adj=Array.from({length:6},()=>Array(6).fill(0)),wt=Array.from({length:6},()=>Array(6).fill(0));
+E.forEach(([i,j])=>{adj[i][j]=adj[j][i]=1;wt[i][j]=wt[j][i]=ri(1,9)});
+const seen=new Set([0]),st=[0];while(st.length){const x=st.pop();for(let y=0;y<6;y++)if(adj[x][y]&&!seen.has(y)){seen.add(y);st.push(y)}}if(seen.size<6)continue;
+const p=sh([0,1,2,3,4,5]),T=p.map(a=>p.map(b=>wt[a][b]));
+const [i0,j0]=pk(E),X=i0,Y=j0,ans=new Set();
+for(const q of PA){let ok=1;for(let i=0;i<6&&ok;i++)for(let j=i+1;j<6;j++)if((T[i][j]>0)!=!!adj[q[i]][q[j]]){ok=0;break}if(ok)ans.add(T[q.indexOf(X)][q.indexOf(Y)])}
+if(ans.size!=1)continue;
+const tb=["   "+[1,2,3,4,5,6].join("  "),...T.map((r,i)=>(i+1)+"  "+r.map(x=>x||"–").join("  "))].join("\n");
+return[`Между населёнными пунктами ${L.join(", ")} построены дороги, схема которых: ${E.map(([a,b])=>L[a]+"–"+L[b]).join(", ")}. В таблице указаны длины дорог между пунктами, пронумерованными 1–6 (знак «–» означает, что дороги нет). Нумерация в таблице никак не связана с буквами на схеме.\n\n${tb}\n\nОпределите длину дороги между пунктами ${L[X]} и ${L[Y]}.`,String([...ans][0]),`Сопоставляем схему и таблицу по числу дорог у каждого пункта (степеням вершин) и по соседям. Так находим, какие номера соответствуют ${L[X]} и ${L[Y]}. Длина дороги между ними — ${[...ans][0]}.`]}},
+2(){const TP=[["(x ∧ ¬y) ∨ (y ≡ z)",(x,y,z)=>(x&&!y)||(y==z)],["(x → y) ∧ (z ∨ ¬y)",(x,y,z)=>(!x||y)&&(z||!y)],["¬x ∨ (y ∧ z)",(x,y,z)=>!x||(y&&z)],["(x ∨ y) → ¬z",(x,y,z)=>!(x||y)||!z],["(x ≡ y) ∨ ¬z",(x,y,z)=>(x==y)||!z],["x ∧ (y ∨ ¬z)",(x,y,z)=>x&&(y||!z)],["(x → z) ∧ ¬y",(x,y,z)=>(!x||z)&&!y]];
+const PM=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]],V=[..."xyz"],all=Array.from({length:8},(_,i)=>[i>>2&1,i>>1&1,i&1]);
+for(;;){const[t,f]=pk(TP),pi=pk(PM),k=ri(3,4),rows=[];while(rows.length<k){const r=ri(0,7);if(!rows.includes(r))rows.push(r)}
+const D=rows.map(r=>{const c=all[r],v=pi.map(i=>c[i]);return{v,F:+!!f(...v.map((_,j)=>0).map((_,j)=>v[j]))}});
+const D2=rows.map(r=>{const vals=all[r];const cols=pi.map(i=>vals[i]);return{cols,F:+!!f(...vals)}});
+let n=0;for(const q of PM){if(D2.every(d=>{const a=[0,0,0];q.forEach((vi,ci)=>a[vi]=d.cols[ci]);return +!!f(...a)==d.F}))n++}
+if(n!=1||new Set(D2.map(d=>d.F)).size<2)continue;
+const ans=pi.map(i=>V[i]).join("");
+return[`Логическая функция F задана выражением ${t}. Ниже приведён фрагмент таблицы истинности функции F, содержащий неполный набор строк. Определите, какому столбцу таблицы соответствует каждая из переменных x, y, z.\n\nПерем. 1  Перем. 2  Перем. 3  F\n${D2.map(d=>d.cols.join("          ")+"          "+d.F).join("\n")}\n\nВ ответе запишите буквы переменных (латинские) в порядке столбцов, без пробелов и разделителей.`,ans,`Подставляем значения из строк в выражение и находим, какие переменные могут стоять в каждом столбце: единственное расположение, при котором F совпадает во всех строках, — ${ans}.`]}},
+6(v){const a=ri(6,20),b=ri(6,20),c=v%3,A=a,B=a==b?b+1:b;
+const sq=c==1;const pr=sq?`Повтори 4 [Вперёд ${a} Направо 90]`:c==0?`Повтори 2 [Вперёд ${A} Направо 90 Вперёд ${B} Направо 90]`:`Повтори 4 [Вперёд ${A} Направо 90 Вперёд ${B} Направо 90]`;
+const r=sq?(a+1)**2:(A-1)*(B-1);
+return[`Исполнитель Черепаха перемещается по плоскости, оставляя след в виде линии. Команды: Вперёд n (на n единиц в направлении движения), Направо m (поворот по часовой стрелке на m градусов). Запись Повтори k [команда1 команда2 …] означает, что последовательность в скобках выполняется k раз. Черепаха стоит в начале координат, хвост опущен, направлена вверх.\n\nВыполняется алгоритм:\n${pr}\n\nСколько точек с целочисленными координатами находится ${sq?"внутри фигуры и на её границе":"внутри фигуры (точки на границе не считать)"}?`,String(r),sq?`Фигура — квадрат ${a}×${a}. Точек на каждой стороне ${a+1}, всего (${a}+1)² = ${r}.`:`Фигура — прямоугольник ${A}×${B}${c==2?" (обведён дважды, фигура та же)":""}. Внутри: (${A}−1)·(${B}−1) = ${r}.`]}
+};
+const MC={};const mk=(t,v)=>MC[t*100+v]||(MC[t*100+v]=(()=>{R=mul(t*1009+v*7919);const[q,a,e]=G[t](v);return{t,v,q,a,e}})());
+const eq=(u,a)=>{const x=norm(u).toLowerCase(),y=norm(a).toLowerCase();return x==y||(!y.includes(" ")&&x.replace(/ /g,"")==y)};
+const norm=s=>String(s).trim().replace(/[\s,;]+/g," ");
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const VS=Array.from({length:30},(_,i)=>i+1);
+
+const h=x=>{$("#app").innerHTML=x;scrollTo(0,0)};
+const I=(d,x="")=>`<svg viewBox="0 0 24 24" width="26" height="26" fill="#a995ff">${d}</svg>`;
+const IC={dumb:I('<rect x="2" y="9" width="3" height="6" rx="1"/><rect x="5" y="7" width="3" height="10" rx="1"/><rect x="16" y="7" width="3" height="10" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="8" y="11" width="8" height="2"/>'),
+doc:I('<path d="M6 3h9l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 11h8M8 14h8M8 17h5" stroke="#2a1f66" stroke-width="1.6" stroke-linecap="round"/>'),
+cup:I('<path d="M7 3h10v5a5 5 0 0 1-10 0z"/><path d="M4 4h3v3a2 2 0 0 1-3-3zM20 4h-3v3a2 2 0 0 0 3-3zM11 13h2v4h3v2H8v-2h3z"/>'),
+bars:I('<rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="5" width="4" height="15" rx="1"/><rect x="16" y="9" width="4" height="11" rx="1"/>')};
+const CH='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#8b6dff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+const btn=(t,s,f,ic)=>`<button class="mi" onclick="${f}"><span class="ic">${IC[ic]}</span><span class="tx"><b>${t}</b><br><span class="mu">${s}</span></span>${CH}</button>`;
+let Q=null,sel=new Set(TY),cnt=5;
+
+function menu(){Q=null;h(`<h1>ЕГЭ · Информатика <span class="fl">💻</span></h1><div class="mu">Тренажёр по выбранным типам КИМ ЕГЭ по информатике 2026 года</div><div class="card mu" style="font-size:12px;margin-top:10px">Это учебный тренажёр по выбранным темам ЕГЭ, а не полный вариант экзамена. В утверждённых КИМ ЕГЭ 2027 года структура и содержание работы по информатике не изменились; изменён формат ответа задания №27. В приложении №27 — отдельная учебная задача, не соответствующая реальному заданию №27. Задания №6, 16, 17, 19–21, 24–26 представлены в упрощённом учебном формате.</div><div style="height:10px"></div>`+
+btn("Тренировка","Выбор типов, подсказки и разбор","setup()","dumb")+
+btn("Проверочная работа","23 задания по выбранным темам. Авторский лимит — 2 ошибки","start('exam')","doc")+
+btn("Марафон","92 задания подряд, в конце разбор слабых тем","start('mar')","cup")+
+btn("Статистика","Результаты и точность по типам","stats()","bars"))}
+
+function setup(preserveScroll=false){const savedScroll=window.scrollY;h(`<button class="s" onclick="menu()">← Назад</button><h1>Тренировка</h1><h2>Типы заданий</h2><div class="chips">`+
+TY.map(t=>`<button class="${sel.has(t)?"on":""}" onclick="tg(${t})">${t} · ${NM[t]}</button>`).join("")+
+`</div><div style="height:8px"></div><button class="s" onclick="sel=sel.size==TY.length?new Set():new Set(TY);setup(true)">Выбрать все / сбросить</button>
+<h2>Вариантов каждого типа: <span id="c">${cnt}</span></h2><input type="range" min="1" max="30" value="${cnt}" oninput="cnt=+this.value;upd()">
+<button class="p" id="go" onclick="start('tr')"></button>`);upd();if(preserveScroll)requestAnimationFrame(()=>scrollTo(0,savedScroll))}
+function tg(t){sel.has(t)?sel.delete(t):sel.add(t);setup(true)}
+function upd(){$("#c").textContent=cnt;$("#go").textContent=`Начать · ${sel.size*cnt} ${((n,m=n%10,k=n%100)=>m==1&&k!=11?"задание":m>1&&m<5&&(k<12||k>14)?"задания":"заданий")(sel.size*cnt)}`}
+
+function start(m){let l=[];
+if(m=="tr"){if(!sel.size)return;for(const t of sel)for(const v of shuf(VS).slice(0,cnt))l.push([t,v])}
+if(m=="exam")for(const t of TY)for(const v of shuf(VS).slice(0,1))l.push([t,v]);
+if(m=="mar")for(const t of TY)for(const v of shuf(VS).slice(0,4))l.push([t,v]);
+Q={m,l:m=="tr"?l.sort((x,y)=>x[0]-y[0]):shuf(l),i:0,err:0,e:{},h:[],v:0,hinted:false};show()}
+
+function show(){view(Q.i)}
+function bar(){if(Q.m=="exam")return`<div class="bar"><i style="width:${Q.i/Q.l.length*100}%"></i></div>`;return`<canvas id="sb" class="sb"></canvas>`}
+function bindBar(){const cv=$("#sb");if(!cv)return;const n=Q.l.length,sg=n>30?3.5:1.6,R=Math.ceil(sg*1.6),gp=n>50?1:2,dp=Math.min(window.devicePixelRatio||1,2),W=cv.clientWidth,HH=64,c=cv.getContext("2d"),av=W-(n-1)*gp,u=av/n;
+cv.width=W*dp;cv.height=HH*dp;c.scale(dp,dp);
+const cw=Array(n).fill(u),ch=Array(n).fill(8),tw=Array(n).fill(u),th=Array(n).fill(8);let tx=[],hi=-1,anc=-9,act=false,raf=0;
+const pos=()=>{let x=0;tx=tw.map(v=>{const p=x;x+=v+gp;return p})};pos();
+const uni=()=>{tw.fill(u);th.fill(8);pos()};
+const draw=()=>{c.clearRect(0,0,W,HH);let x=0,hx=0;
+for(let i=0;i<n;i++){const h=ch[i],y=44-h/2,d=Q.h[i];c.fillStyle=d?(d.ok?"#5fdc94":"#ff6b81"):"rgba(255,255,255,.14)";c.fillRect(x,y,cw[i],h);
+if(i==Q.v||i==hi){c.strokeStyle="#d6ccff";c.lineWidth=2;c.strokeRect(x-1,y-1,cw[i]+2,h+2)}
+if(i==hi)hx=x+cw[i]/2;x+=cw[i]+gp}
+if(hi>=0){const t=(hi+1)+(Q.h[hi]?(Q.h[hi].ok?" ✓":" ✗"):"");c.font="600 13px -apple-system,system-ui,sans-serif";const w=c.measureText(t).width+18,bx=Math.min(W-w,Math.max(0,hx-w/2));
+c.fillStyle="#d6ccff";c.fillRect(bx,2,w,20);c.fillStyle="#0b0722";c.textAlign="center";c.textBaseline="middle";c.fillText(t,bx+w/2,12.5)}};
+const frame=()=>{raf=0;let mv=false;for(let i=0;i<n;i++){const a=tw[i]-cw[i],b=th[i]-ch[i];if(Math.abs(a)>.05||Math.abs(b)>.05){cw[i]+=a*.4;ch[i]+=b*.4;mv=true}else{cw[i]=tw[i];ch[i]=th[i]}}draw();if(mv)req()};
+const req=()=>{if(!raf)raf=requestAnimationFrame(frame)};
+const at=x=>{for(let i=0;i<n;i++)if(x<tx[i]+tw[i]+gp/2)return[i,Math.min(.999,Math.max(.001,(x-tx[i])/tw[i]))];return[n-1,.999]};
+const lay=(u0,x0)=>{const f=Math.min(n-1,Math.max(0,Math.floor(u0))),fr=Math.min(.999,Math.max(.001,u0-f)),g=[],w=[];let L=0,T=0;
+for(let i=0;i<n;i++){const v=Math.exp(-((i+.5-u0)**2)/(2*sg*sg));g.push(v);w.push(1+7*v);T+=w[i];if(i<f)L+=w[i]}
+L+=fr*w[f];const xp=Math.min(av-1,Math.max(1,x0-f*gp)),a=xp/L,b=(av-xp)/(T-L);
+for(let i=0;i<n;i++){tw[i]=w[i]*(i<f?a:i>f?b:a*fr+b*(1-fr));th[i]=8+18*g[i]}pos();anc=f};
+const mv=e=>{const x=e.clientX-cv.getBoundingClientRect().left;if(!act){act=true;lay(x/W*n,x)}
+let[i,fr]=at(x);if(Math.abs(i-anc)>R){lay(i+fr,x);[i]=at(x)}hi=i;req()};
+const rst=()=>{act=false;hi=-1;anc=-9;uni();req()};
+cv.onpointerdown=mv;cv.onpointermove=e=>{if(e.pointerType=="mouse"||act)mv(e)};
+cv.onpointerup=()=>{const i=hi;cancelAnimationFrame(raf);raf=0;rst();if(i>=0&&(Q.h[i]||i==Q.i))view(i)};
+cv.onpointerleave=e=>{if(e.pointerType=="mouse")rst()};cv.onpointercancel=rst;draw()}
+function inp(tr){return`<input type="text" id="a" placeholder="Ответ" autocomplete="off" autocapitalize="off"><button class="p" onclick="ans()">Ответить</button>${tr?`<button onclick="hint()">Подсказка</button><div id="hn" class="card mu" style="display:none"></div>`:""}`}
+function res(i){const d=Q.h[i],c=i==Q.i,last=i>=Q.l.length-1||(Q.m=="exam"&&Q.err>2),mx=Q.h.length-1;
+return`<div class="card${c?" an":""}"><span class="pi">${d.ok?"✅":"❌"}</span> <b class="${d.ok?"ok":"er"}">${d.ok?"Верно":"Неверно"}</b>${d.ok&&c&&Q.st>2?` <span class="pi" style="margin-left:8px">🔥 ${Q.st} подряд</span>`:""}<div class="mu" style="margin-top:6px">Ваш ответ: <b id="ua"></b></div>${d.ok?"":`<div>Правильный ответ: <b id="ca"></b></div>`}${Q.m=="tr"?`<div class="mu qt" id="ex" style="margin-top:8px"></div>`:""}</div>`+
+(c?`<button class="p" onclick="next()">${last?"Завершить":"Дальше"}</button>`:`<div class="row"><button class="s" ${i?`onclick="view(${i-1})"`:"disabled"}>← Назад</button><button class="s" ${i<mx?`onclick="view(${i+1})"`:"disabled"}>Вперёд →</button></div><button class="p" style="margin-top:12px" onclick="view(Q.i)">К текущему заданию</button>`)}
+function view(i){Q.v=i;if(i===Q.i&&!Q.h[i])Q.hinted=false;const[t,v]=Q.l[i],k=Q.cur=mk(t,v),tr=Q.m=="tr",d=Q.h[i],rv=i!=Q.i;
+h(`<div class="row"><button class="s" onclick="ask('Выйти из режима? Ответы уже сохранены в статистике.',menu,'Выйти')">✕</button><span class="mu">${i+1} / ${Q.l.length}${tr?"":" · ошибок: "+Q.err}</span></div>${bar()}${rv?`<div class="mu" style="margin-bottom:8px">Просмотр: ответ изменить нельзя</div>`:""}<div class="card" id="tc"><div class="mu">Задание ${t} · ${NM[t]}</div>${SN[t]?`<div class="mu" style="font-size:12px;opacity:.8">${SN[t]}</div>`:""}${[24,26,27].includes(t)?`<div class="notice">Учебный пример с уменьшенным объёмом данных. Не заменяет практику работы с исходными файлами и самостоятельного написания программы.</div>`:""}<div id="q" class="qt"></div></div><div id="ctl">${d?res(i):inp(tr)}</div>`);
+$("#q").textContent=k.q;bindBar();
+if(d){$("#ua").textContent=d.u;if($("#ca"))$("#ca").textContent=k.a;if($("#ex"))$("#ex").textContent=k.e}
+else $("#a").onkeydown=e=>{if(e.key=="Enter")ans()}}
+function ask(m,y,l){const o=document.createElement("div");o.className="ov";o.innerHTML=`<div class="card dlg"><p style="margin:0 0 10px"></p><button class="p" id="yy">${l}</button><button id="nn">Отмена</button></div>`;o.querySelector("p").textContent=m;document.body.appendChild(o);o.querySelector("#nn").onclick=()=>o.remove();o.querySelector("#yy").onclick=()=>{o.remove();y()}}
+
+function conf(){const c=["#8b6dff","#a592ff","#8fe3b0","#ffd166","#ff8fa3"];for(let i=0;i<36;i++){const e=document.createElement("i");e.className="cf";e.style.cssText=`left:${Math.random()*100}vw;background:${c[i%5]};--dx:${Math.random()*120-60}px;animation-delay:${Math.random()*.4}s`;document.body.appendChild(e);setTimeout(()=>e.remove(),3000)}}
+function hint(){const b=$("#hn");Q.hinted=true;b.textContent=H[Q.cur.t]||"Попробуйте применить известный алгоритм и проверить промежуточные результаты.";b.style.display="block";b.classList.add("an")}
+
+function ans(){const field=$("#a");if(!Q||!field||!Q.cur)return;const k=Q.cur,u=field.value;if(!u.trim()||Q.h[Q.i]||Q.v!=Q.i)return;
+const ok=eq(u,k.a),r=S.t[k.t]=S.t[k.t]||{a:0,e:0,hA:0,hE:0,nA:0,nE:0,fA:0,fE:0,rA:0,rE:0};
+const key=k.t+"_"+k.v,repeat=!!S.seen[key],hinted=!!Q.hinted;
+r.a++;if(hinted)r.hA++;else r.nA++;if(repeat)r.rA++;else r.fA++;
+if(!ok){r.e++;if(hinted)r.hE++;else r.nE++;if(repeat)r.rE++;else r.fE++;Q.err++;Q.e[k.t]=(Q.e[k.t]||0)+1}
+S.seen[key]=true;sv();Q.st=ok?(Q.st||0)+1:0;Q.h[Q.i]={u:u.trim(),ok,hinted,repeat};
+view(Q.i);$("#tc").classList.add(ok?"good":"bad")}
+
+function next(){if(Q.i>=Q.l.length-1||(Q.m=="exam"&&Q.err>2))return fin();Q.i++;show()}
+
+function fin(){const n=Q.i+1,m=Q.m,rows=Object.entries(Q.e).sort((a,b)=>b[1]-a[1]);let t,s;
+if(m=="exam"){const ps=Q.err<=2&&n==Q.l.length;t=ps?"Проверочная работа пройдена":"Проверочная работа не пройдена";s=`Решено ${n} из ${Q.l.length}, ошибок: ${Q.err}. Авторское правило приложения: допускается не более 2 ошибок; это не правило КЕГЭ.`}
+else if(m=="mar"){t="Марафон пройден";s=`Ошибок: ${Q.err} из ${n}`}
+else{t="Тренировка завершена";s=`Верно ${n-Q.err} из ${n}`}
+const em=m=="exam"?(Q.err<=2&&n==Q.l.length?"🎉":"💪"):m=="mar"?(Q.err?"🏁":"🏆"):(Q.err?"📘":"⭐");if(em=="🎉"||em=="🏆"||em=="⭐")setTimeout(conf,200);
+const rec=m=="tr"?"":(rows.length?`<h2>Типы с наибольшим числом ошибок</h2>`+rows.slice(0,3).map(([k,e])=>{const a=Q.h.filter((d,i)=>Q.l[i][0]==k&&d).length,good=a-e,p=a?Math.round(good/a*100):0;return`<div class="card"><b>№${k} · ${NM[k]}</b><div class="statline"><span>Попыток</span><b>${a}</b></div><div class="statline"><span>Ошибок</span><b class="er">${e}</b></div><div class="statline"><span>Верных ответов</span><b>${p}%</b></div><div class="mu" style="margin-top:6px">Рекомендация: потренируйтесь в режиме «Тренировка» именно на этом типе. ${H[k]||"Повторите алгоритм решения и разберите ошибки."}</div></div>`}).join(""):`<div class="card ok">Ошибок нет. Отличный результат.</div>`);
+h(`<div class="fl" style="font-size:56px;margin-top:8px">${em}</div><h1>${t}</h1><div class="mu">${s}</div>${rec}<button class="p" onclick="menu()">В меню</button>`)}
+
+function stats(){
+const E=TY.map(t=>[String(t),S.t[t]||{a:0,e:0}]).filter(([_,r])=>(r.a||0)>0);let tot=0,err=0;
+E.forEach(([_,r])=>{tot+=r.a||0;err+=r.e||0});
+const rate=r=>r.a?Math.round((r.a-r.e)/r.a*100):0;
+const MIN_SAMPLE=5;
+const ranked=E.filter(([_,r])=>(r.a||0)>=MIN_SAMPLE).map(([t,r])=>[+t,r,rate(r)]).sort((a,b)=>a[2]-b[2]||b[1].a-a[1].a||a[0]-b[0]);
+const low=ranked[0],high=ranked[ranked.length-1];
+const blk=(k,v)=>`<div style="padding:6px 0"><div class="mu">${k}</div><b>${v}</b></div>`;
+const pct=(a,e)=>a?Math.round((a-e)/a*100)+"%":"—";
+const stat=(label,a,e)=>`<div class="statline"><span>${label}</span><b>${a||0} / ${pct(a||0,e||0)}</b></div>`;
+const rows=TY.map(t=>{const r=S.t[t]||{},a=r.a||0,e=r.e||0;return`<div class="card"><div class="row"><b>№${t} · ${NM[t]}</b><b>${a?pct(a,e):"—"}</b></div><div class="mu">Попыток: ${a} · ошибок: ${e}</div><div class="bar"><i style="width:${a?rate(r):0}%"></i></div>${r.legacy?`<div class="mu" style="font-size:12px">Старые данные: разбивка по подсказкам и повторным попыткам до обновления не сохранялась.</div>`:`<div class="mu" style="font-size:12px;margin-top:6px">С подсказкой: ${r.hA||0} попыток, ${r.hE||0} ошибок (${pct(r.hA||0,r.hE||0)})<br>Без подсказки: ${r.nA||0} попыток, ${r.nE||0} ошибок (${pct(r.nA||0,r.nE||0)})<br>Первые попытки: ${r.fA||0}, ошибок ${r.fE||0} (${pct(r.fA||0,r.fE||0)})<br>Повторные: ${r.rA||0}, ошибок ${r.rE||0} (${pct(r.rA||0,r.rE||0)})</div>`}</div>`}).join("");
+h(`<button class="s" onclick="menu()">← Назад</button><h1>Статистика</h1><div class="mu">Результаты хранятся на этом устройстве</div><div class="card">`+
+blk("Всего попыток",tot)+blk("Ошибок",err)+blk("Доля верных ответов",pct(tot,err))+
+blk("Время в приложении",`${Math.floor(S.sec/3600)} ч ${Math.floor(S.sec%3600/60)} мин`)+
+blk("Наибольшая доля верных ответов (от 5 попыток)",ranked.length<2?"для сравнения нужно минимум 2 типа с 5 или более попытками":ranked[0][2]===ranked[ranked.length-1][2]?`У всех сравниваемых типов одинаково: ${high[2]}%`:`№${high[0]} · ${NM[high[0]]} — ${high[2]}%`)+
+blk("Наименьшая доля верных ответов (от 5 попыток)",ranked.length<2?"для сравнения нужно минимум 2 типа с 5 или более попытками":ranked[0][2]===ranked[ranked.length-1][2]?`У всех сравниваемых типов одинаково: ${low[2]}%`:`№${low[0]} · ${NM[low[0]]} — ${low[2]}%`)+
+`</div><h2>Результаты по типам</h2>${rows}<div class="card mu" style="font-size:12px">Процент верных ответов рассчитывается как доля правильных ответов от всех попыток. Сравнение сильных и слабых типов показывается, если не менее двух типов имеют по 5 или более попыток; при равном проценте учитывается объём выборки. Первая и повторная попытка определяются отдельно для каждого варианта задания. Старые данные сохранены, но не содержат сведений о подсказках и повторности. Повторность вариантов отслеживается только с момента обновления; первое решение после обновления может быть повторным по факту, но будет записано как первая учтённая попытка.</div>`+
+`<button onclick="ask('Стереть всю статистику?',()=>{S={t:{},sec:0,seen:{}};sv();stats()},'Стереть')">Сбросить статистику</button>`)
+}
+// Горизонтальные свайпы в области условия: влево — следующее решённое задание, вправо — предыдущее.
+let swipeStart=null;
+document.addEventListener("touchstart",e=>{if(!Q||!e.touches||e.touches.length!==1)return;const target=e.target;if(!target.closest("#tc"))return;swipeStart={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
+document.addEventListener("touchend",e=>{if(!swipeStart||!Q){swipeStart=null;return;}const t=e.changedTouches&&e.changedTouches[0];if(!t){swipeStart=null;return;}const dx=t.clientX-swipeStart.x,dy=t.clientY-swipeStart.y;swipeStart=null;if(Math.abs(dx)<65||Math.abs(dx)<Math.abs(dy)*1.25)return;if(dx<0){if(Q.h[Q.i]&&Q.i<Q.l.length-1)next();}else if(Q.i>0){view(Q.i-1);}},{passive:true});
+menu();
+</script></body></html>
